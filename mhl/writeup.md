@@ -66,9 +66,10 @@ $$
 - for each $t_i$ and $a_i$ we substract $t_n$ and $a_n$ which means we need one more signature than we usually need ( we have 184 unknow bits so we need 4 sigs + one to substract  ) so the sigs we have are enough
 
 The Lattice :
-    $$M = \begin{bmatrix} p & 0 & 0 & \cdots & 0 & 0 \\ 0 & p & 0 & \cdots & 0 & 0 \\ \vdots &  & \ddots & & & \vdots \\ 0 & 0 & \cdots & p & 0 & 0 \\ t_1 - t_n & t_2 - t_n & \cdots & t_m - t_n & B/p & 0 \\ a_1 - a_n & a_2 - a_n & \cdots & a_m -a_n  & 0 & B \end{bmatrix}$$
+
+$$M = \begin{bmatrix} p & 0 & 0 & \cdots & 0 & 0 \\ 0 & p & 0 & \cdots & 0 & 0 \\ \vdots &  & \ddots & & & \vdots \\ 0 & 0 & \cdots & p & 0 & 0 \\ t_1 - t_n & t_2 - t_n & \cdots & t_m - t_n & B/p & 0 \\ a_1 - a_n & a_2 - a_n & \cdots & a_m -a_n  & 0 & B \end{bmatrix}$$
 
 
-- we apply LLL and get d from $Bd/p$  or  $ k_i - k_n $ as shown in the [script](solution/sol.sage)
+- we apply LLL and get d from $Bd/p$  or  $k_i - k_n$ as shown in the [script](solution/sol.sage)
 
 

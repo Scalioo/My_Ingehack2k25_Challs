@@ -1,4 +1,4 @@
-### HNP
+## HNP
 
 
 Let $p$ be a prime and let $d \in \mathbb{F}_p$ be an unknown integer. Recover $d$ given pairs of integers $\{ (t_i, a_i) \}_{i=1}^m$ such that
@@ -17,4 +17,58 @@ $$v_k = (k_1, k_2, \ldots, k_m, Bd/p, B)$$
 
 which is a short vector since the $k_i$ are small, so can be recovered by solving SVP!
 
-#### Get our HNP coeffs :
+## Get our HNP coeffs ($t_i$ and $a_i$ ) :
+
+- From the signing function we have $s = \left( k_1^{-1} \cdot (h \cdot r_1 + r_2 \cdot d) \right) \mod n$
+- We start with the equation:
+
+$$
+s = k_1^{-1} (h r_1 + r_2 d) \mod n
+$$
+
+- Multiplying both sides by $k_1$:
+
+$$
+k_1 s = h r_1 + r_2 d \mod n
+$$
+
+- Rearranging to isolate \( d \):
+
+$$
+k_1 s - h r_1 = r_2 d \mod n
+$$
+
+- Dividing by $r_2$ (if invertible modulo $n$):
+
+$$
+d = (k_1 s - h r_1) r_2^{-1} \mod n
+$$
+
+- Rewriting in the form of the hidden number problem:
+
+$$
+k_1 - s^{-1} h r_1 - s^{-1} r_2 d \equiv 0 \mod n
+$$
+
+- Thus, identifying:
+
+$$
+t_i = s^{-1} r_2, \quad a_i = s^{-1} h r_1
+$$
+
+
+
+## Build The Lattice :
+
+- Now that we have the $t_i$ and $a_i$ , we only need to build the Lattice 
+- the nonces are perfectly sized but have the same msb , so how can we exploit them 
+- we can take a look at this (https://eprint.iacr.org/2019/023.pdf) in the implicit prefix section 
+- for each $t_i$ and $a_i$ we substract $t_n$ and $a_n$ which means we need one more signature than we usually need ( we have 184 unknow bits so we need 4 sigs + one to substract  ) so the sigs we have are enough
+
+The Lattice :
+    $$M = \begin{bmatrix} p & 0 & 0 & \cdots & 0 & 0 \\ 0 & p & 0 & \cdots & 0 & 0 \\ \vdots &  & \ddots & & & \vdots \\ 0 & 0 & \cdots & p & 0 & 0 \\ t_1 - t_n & t_2 - t_n & \cdots & t_m - t_n & B/p & 0 \\ a_1 - a_n & a_2 - a_n & \cdots & a_m -a_n  & 0 & B \end{bmatrix}$$
+
+
+- we apply LLL and get d from $Bd/p$  or  $ k_i - k_n $ as shown in the [script](solution/sol.sage)
+
+

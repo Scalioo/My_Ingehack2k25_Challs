@@ -1,7 +1,7 @@
 ## HNP
 
 
-Let $p$ be a prime and let $d \in \mathbb{F}_p$ be an unknown integer. Recover $d$ given pairs of integers $\{ (t_i, a_i) \}_{i=1}^m$ such that
+Let $p$ be a prime and let $d \in \mathbb{F}_p$ be an unknown integer. Recover $d$ given pairs of integers ${ (t_i, a_i) }_{i=1}^m$ such that
 $$k_i - t_i d - a_i \equiv 0 \pmod p$$
 and $|k_i| < B$ for some $B < p$. The $k_i$ are unknown.
 

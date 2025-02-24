@@ -1,0 +1,6 @@
+version: '3'
+services:
+  invalid:
+    build: .
+    ports:
+      - "13002:1025"
